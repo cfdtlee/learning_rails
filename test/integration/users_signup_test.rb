@@ -12,5 +12,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                             password_confirmation: "password" }
     end
     assert_template 'users/show'
+    # assert_select 'div#<CSS id for error explanation>'
+    # assert_select 'div.<CSS class for field with error>'
+    # assert_not flash.FILL_IN
   end
 end
