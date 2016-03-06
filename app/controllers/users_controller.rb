@@ -16,6 +16,14 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+  def get_new_msg
+    file = File.join(Rails.root, 'app', 'assets', 'data', 'data.json')
+    # file = File.read('file-name-to-be-read.json')
+    data_hash = JSON.parse(file)
+    render json: data_hash
+  end
+
   private
 
     def user_params
