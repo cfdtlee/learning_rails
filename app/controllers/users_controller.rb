@@ -18,8 +18,8 @@ class UsersController < ApplicationController
   end
 
   def get_new_msg
-    file = File.join(Rails.root, 'app', 'assets', 'data', 'data.json')
-    # file = File.read('file-name-to-be-read.json')
+    file_name = File.join(Rails.root, 'app', 'assets', 'data', 'messages.json')
+    file = File.read(file_name)
     data_hash = JSON.parse(file)
     render json: data_hash
   end
