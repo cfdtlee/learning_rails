@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # get 'get_new_msg'  =>  'static_pages#get_new_msg'
   get 'get_new_msg'  =>  'users#get_new_msg'
   resources :users
+  resources :account_activations, only: [:edit]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

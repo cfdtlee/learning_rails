@@ -13,9 +13,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      @user.send_activation_email
+      # UserMailer.account_activation(@user).deliver_now
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
+      # log_in @user
+      # flash[:success] = "Welcome to the Sample App!"
+      # redirect_to @user
     else
       render 'new'
     end
@@ -26,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def get_new_msg
-    file_name = File.join(Rails.root, 'app', 'assets', 'data', 'data.json')
+    file_name = File.join(Rails.root, 'app', 'assets', 'data', 'messages.json')
     file = File.read(file_name)
     data_hash = JSON.parse(file)
     render json: data_hash
