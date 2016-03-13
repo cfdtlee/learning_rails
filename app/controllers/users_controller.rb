@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # debugger
   end
+
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
@@ -39,6 +40,14 @@ class UsersController < ApplicationController
   def index
     @users = User.paginate(page: params[:page])
   end
+  # def index
+  #   @users = User.where(activated: FILL_IN).paginate(page: params[:page])
+  # end
+
+  # def show
+  #   @user = User.find(params[:id])
+  #   redirect_to root_url and return unless FILL_IN
+  # end
 
   def update
     @user = User.find(params[:id])
